@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark"   creationComplete="application1_creationCompleteHandler(event)"
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" width="1000" height="1024" minHeight="600" xmlns:containers="com.googlecode.flexwebbeans.core.containers.*" xmlns:fields="com.googlecode.flexwebbeans.core.fields.*" xmlns:api="com.googlecode.flexwebbeans.core.model.api.*">
+	
+	<fx:Style source="assets/css/bean.css" />
+	<fx:Script>
+		<![CDATA[
+			import com.googlecode.flexwebbeans.core.events.CRUDEvent;
+			import com.googlecode.flexwebbeans.core.model.BeanMetaDataFactory;
+			import com.googlecode.flexwebbeans.core.model.api.BeanMetaData;
+			import com.googlecode.flexwebbeans.example.vo.Address;
+			import com.googlecode.flexwebbeans.example.vo.Dog;
+			import com.googlecode.flexwebbeans.example.vo.Person;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.effects.Fade;
+			import mx.events.FlexEvent;
+			import mx.managers.ToolTipManager;
+			
+			
+			private var  person:Person = new Person();
+			
+			[Bindable]
+			private var beanMetaData:  BeanMetaData  ;
+			
+			[Bindable]
+			private var beanMetaData2:  BeanMetaData  ;
+			
+			
+			
+			[Bindable]
+			private var dataProvider:  ArrayCollection = new ArrayCollection();
+			
+			
+			protected function beanGrid_postUpdateHandler(event:CRUDEvent):void
+			{
+				Alert.show("Save successfully!");
+			}
+			
+			
+
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+			}
+
+
+			protected function beanform_onCreateHandler(event:CRUDEvent):void
+			{
+				// TODO Auto-generated method stub
+			}
+
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				registerClassAlias("person",Person);
+				registerClassAlias("address",Address);
+				registerClassAlias("dog",Dog);
+				person.name ="Zhang san";
+				person.age = 30;
+				person.sex = true;
+				person.birthDay = new Date();
+				
+				var address:Address = new Address();
+				address.name ="pudong";
+				address.detail = "shanghai pudong" ;
+				person.address = address;
+				
+				person.childs = new ArrayCollection();
+				for (var i:int =0; i<100; i++)
+				{
+					var child:Person = new Person();
+					child.name = "Li si " + i;
+					child.age = i;
+					child.sex = true;
+					child.birthDay = new Date();
+					person.childs.addItem(child);
+				}
+				
+			}
+			
+			protected function beanform_onUpdateHandler(event:CRUDEvent):void
+			{
+				Alert.show("Save successfully!");
+				
+			}
+ 
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				beanform.removeAllElements();
+				beanMetaData  =  BeanMetaDataFactory.createBeanMetaDataByXMLFile(person,"assets/xml/BeanForm.xml");
+				
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				beangrid.removeAllElements();
+				beanMetaData2  =  BeanMetaDataFactory.createBeanMetaDataByXMLFile(person,"assets/xml/BeanGrid.xml");
+			}
+			
+		]]>
+	</fx:Script>
+	
+	
+	<mx:VBox id="vbox" width="100%"  >
+		<mx:TabNavigator  width="100%" height="100%"  >
+			
+			<mx:VBox label="BeanForm" width="100%" height="100%">
+					<s:Button click="button1_clickHandler(event)" label="Generate"/>
+				<containers:BeanFormLayout id="beanform" modify="true"  height="500"   beanMetaData="{beanMetaData}" onUpdate="beanform_onUpdateHandler(event)"	onCreate="beanform_onCreateHandler(event)"	
+										   showSaveButton="true" showCloseButton="true" />
+			</mx:VBox>
+			<mx:VBox label="BeanGrid" width="100%" height="100%" >
+				<s:Button click="button3_clickHandler(event)" label="Generate"/>
+				<containers:BeanGridLayout id="beangrid" modify="true"  height="500"   beanMetaData="{beanMetaData2}" onUpdate="beanGrid_postUpdateHandler(event)"	onCreate="beanform_onCreateHandler(event)"	
+										   showSaveButton="true" showCloseButton="true" />
+			</mx:VBox>
+			
+		</mx:TabNavigator>
+	
+		
+	</mx:VBox>
+</s:Application>

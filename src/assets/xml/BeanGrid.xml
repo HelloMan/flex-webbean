@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean id="person" type="com.googlecode.flexwebbeans.example.vo::Person" title="Person Edit">
+	<tabs>
+		<tab caption="baseinfo" >
+			<props>
+				<prop name="name"     required="true" colspan="3" width="500" fieldType="RichEditableText"></prop>
+				<prop name="age"   ></prop>
+				<prop  name="birthDay" fieldType="String" >
+				 
+				</prop>
+				<prop name="sex" showLabel="false" ></prop>
+				<prop name="address" showLabel="false" fieldType="BeanForm" beanXMLUri="address" showSaveButton="true"></prop>
+				<prop   fieldType="_EMPTY_" />
+				<prop   fieldType="Action" label="click me" />
+			</props>
+		</tab>
+		
+		<tab caption="childs" >
+			<props>
+				<prop name="childs" showLabel="false" colspan="3" itemHeight="300" useFormLayout="false" fieldType="BeanTable" beanXMLUri="child" showCloseButton="false">
+				</prop>
+			</props>
+		</tab>
+		
+	</tabs>
+	<gridcolumns>
+		<gridcolumn name="name" ></gridcolumn>
+		<gridcolumn name="age" ></gridcolumn>
+		<gridcolumn  name="birthDay" ></gridcolumn>
+		<gridcolumn name="sex" ></gridcolumn>
+	</gridcolumns>
+	<beans> 
+		<bean id="address" type="com.googlecode.flexwebbeans.example.vo::Address" title="Address Edit" >
+			<tabs>
+				<tab>
+					<props>
+						<prop name="name" />
+						<prop name="detail" />
+					
+					</props>
+				
+				</tab>
+			
+			</tabs>
+		</bean>
+		
+		<bean id="child" type="com.googlecode.flexwebbeans.example.vo::Person" title="Child List Edit" >
+			<tabs>
+				<tab caption="baseinfo" >
+					<props>
+						<prop name="name"  colspan="2"  />
+						<prop name="age"  />
+						<prop  name="birthDay"  />
+						<prop name="sex" />
+						 
+					</props>
+				</tab>
+				
+			
+			</tabs>
+		</bean>
+	
+	</beans>
+	 
+</bean>

@@ -1,0 +1,51 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+.errorToolTip {
+	color : #FFFFFF ;
+	fontSize : 9 ;
+	fontWeight : "bold" ;
+	shadowColor : #000000 ;
+	borderColor : #CE2929 ;
+	borderStyle : "errorTipRight" ;
+	paddingBottom : 4 ;
+	paddingLeft : 4 ;
+	paddingRight : 4 ;
+	paddingTop : 4 ;
+}
+
+.beanGrid
+{
+
+
+}
+
+.beanGrid_row
+{
+}
+
+.beanGrid_row_item
+{
+	paddingBottom:5;
+	paddingLeft:5;
+	paddingRight:5;
+	paddingTop:5;
+}
+
+.beanGrid_row_item_fieldLabel
+{
+	fontWeight: bold;
+}
+.beanGrid_row_item_fieldComponent
+{
+	
+}
+
+.sss{
+	font-weight:bold;
+	color:red;
+    
+}
+
+
