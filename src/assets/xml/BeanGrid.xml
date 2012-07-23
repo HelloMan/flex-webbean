@@ -5,7 +5,7 @@
 			<props>
 				<prop name="name"     required="true" colspan="3" width="500" fieldType="RichEditableText"></prop>
 				<prop name="age"   ></prop>
-				<prop  name="birthDay" fieldType="String" >
+				<prop  name="birthDay"  >
 				 
 				</prop>
 				<prop name="sex" showLabel="false" ></prop>
