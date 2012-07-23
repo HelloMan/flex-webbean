@@ -2,6 +2,7 @@ package com.googlecode.flexwebbeans.core.fields
 {
 	import flash.events.Event;
 	
+	import mx.binding.utils.BindingUtils;
 	import mx.core.UIComponent;
 	import mx.validators.Validator;
 	
@@ -29,11 +30,14 @@ package com.googlecode.flexwebbeans.core.fields
 			}else{
 				var value:Object = getModel();
 				textInput  =  new TextInput();
-				if (value){
-					textInput.text = value.toString();
-				}else{
-					textInput.text = "";
-				}
+//				if (value){
+//					textInput.text = value.toString();
+//				}else{
+//					textInput.text = "";
+//				}
+				
+				BindingUtils.bindProperty(textInput,"text",elementMetaData.tabMetaData.beanMetaData.editModel,elementMetaData.name);
+				BindingUtils.bindSetter(changeText,textInput,"text");
 				
 				validator = elementMetaData.registerValidator();
 				if (validator)
@@ -42,12 +46,12 @@ package com.googlecode.flexwebbeans.core.fields
 					validator.property = "text";
 				}
 				
-				textInput.addEventListener(Event.CHANGE,changeText);
+//				textInput.addEventListener(Event.CHANGE,changeText);
 				return textInput;
 			}
 		}
 		
-		private function changeText(event:Event):void
+		private function changeText(event:*):void
 		{
 			setModel(textInput.text);
 		}

@@ -23,9 +23,21 @@ package com.googlecode.flexwebbeans.example.vo
 		
 		private var _dogs:IList;
 		
+		private var _country:int;
+		
 		
 		public function Person()
 		{
+		}
+
+		public function get country():int
+		{
+			return _country;
+		}
+
+		public function set country(value:int):void
+		{
+			_country = value;
 		}
 
 		public function get dogs():IList

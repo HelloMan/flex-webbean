@@ -13,15 +13,16 @@
 				 
 				</prop>
 				<prop name="sex" ></prop>
+				<prop name="country" fieldType="Combobox" dataProviderKey="country" labelField="@name" keyField="@id" editable="false" ></prop>
 				<prop name="address"  fieldType="BeanForm" beanXMLUri="address" showSaveButton="true"></prop>
 				<prop   fieldType="_EMPTY_" />
-				<prop   fieldType="Action" width="80" label="button1"/>
+				<prop   fieldType="Action" width="80" label="button1" />
 			</props>
 		</tab>
 		
 		<tab caption="childs" >
 			<props>
-				<prop name="childs"   fieldType="BeanTable" beanXMLUri="child">
+				<prop name="childs"   fieldType="BeanTable" beanXMLUri="child" useFormLayout="true" >
 				</prop>
 			</props>
 		</tab>
@@ -62,5 +63,15 @@
 		</bean>
 	
 	</beans>
+	
+	<dataProviders>
+		<dataProvider id="country" >
+			<country id="1" name="China" />
+			<country id="2" name="America" />
+			<country id="3" name="Japan" />
+			<country id="4" name="Newzland" />
+		</dataProvider>
+	</dataProviders>
 	 
 </bean>
+

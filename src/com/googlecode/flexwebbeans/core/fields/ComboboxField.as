@@ -1,18 +1,15 @@
 package com.googlecode.flexwebbeans.core.fields
 {
-	import com.googlecode.flexwebbeans.core.model.api.ElementMetaData;
 	import com.googlecode.flexwebbeans.core.utils.XmlLoadUtil;
 	
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	
-	import mx.binding.utils.BindingUtils;
 	import mx.collections.ICollectionView;
-	import mx.collections.XMLListCollection;
+	import mx.controls.ComboBox;
 	import mx.core.UIComponent;
 	import mx.events.ListEvent;
-	
-	import spark.components.ComboBox;
+	 
 	
 	
 	/**
@@ -79,7 +76,7 @@ package com.googlecode.flexwebbeans.core.fields
 				var model:Object = getModel();
 				for(var i:int =0; i<dataProvider.length-1; i++)
 				{
-					var curValue:Object = elementMetaData[PROP_KEYFIELD]==null?dataProvider[i]:dataProvider[i][elementMetaData[PROP_KEYFIELD]];
+					var curValue:Object =  dataProvider[i][elementMetaData[PROP_KEYFIELD]];
 					if (model == curValue)
 					{
 						combobox.selectedIndex = i;
@@ -122,11 +119,7 @@ package com.googlecode.flexwebbeans.core.fields
 		private function changeCombobox(event:ListEvent):void{
 			if (combobox.selectedItem!=null)
 			{
-				if (elementMetaData[PROP_KEYFIELD] && elementMetaData[PROP_LABELFIELD]){
-					setModel(combobox.selectedItem(elementMetaData[PROP_KEYFIELD]));
-				}else{
-					setModel(combobox.selectedItem());
-				}
+				setModel(combobox.selectedItem[elementMetaData[PROP_KEYFIELD]]);
 			}
 			
 		}
